@@ -3,12 +3,16 @@ package com.kdn.studycompose_ui
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.kdn.studycompose_ui.ui.theme.StudyCompose_UITheme
 
 // Compose 에서는 재사용성을 강조!
@@ -36,12 +40,57 @@ class MainActivity : ComponentActivity() {
 //                NotReUse()
 //            }
 //     ---------------------------- 3. 재사용성을 고려한 공통의 컨테이너 지정 버전 ----------------
-              setContent {
+//              setContent {
+//                ReUse {
+//                    Greeting(name = "ReUse")
+//                }
+//              }
+//      ---------------------------- 4. Column & Divider -------------------------------
+
+//        setContent {
+//                ReUse {
+//                    MyScreenContent()
+//                }
+//              }
+
+//      ---------------------------- 5. State -------------------------------
+
+        // 상태변경에 대응하는것
+        // Composable 함수를 호출하여 데이터를 Ui로 변환한다.
+        // 데이터가 변경되면 새 데이터로 이러한 기능을 이용하여 업데이트된 UI를 구성한다.
+
+        //  Compose 는 기존의 옵저버 패턴과 같은 composing 기능을 제공한다.
+        // 또한 Compose 는 데이터가 변경된 구성요소만 재구성한다.
+
+        // remember : 데이터가 변경될 때의 상태를 유지한다.
+        // mutableStateOf 는 가변메모리를 사용할 수 있게 해준다.
+
+        // 화면의 다른위치에 컴포저블의 여러 객체들이 자체 버전을 가지고 있는것이다!
+
+                setContent {
                 ReUse {
-                    Greeting(name = "ReUse")
+                    Counter()
                 }
               }
+    }
+}
 
+//Column & Divider 로 칸을 recycler_view 처럼 나눌 수 있다.
+// 또한 Kotlin 기반이기때문에 반복문, 컬렉션등을 사용하여 UI를 구성 할 수 도있다.
+@Composable
+fun MyScreenContent() {
+    Column {
+        Greeting(name = "CEO 최윤성")
+        Divider(color = Color.Black)
+        Greeting("반갑습니다.")
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun columnPreview(){
+    ReUse {
+        MyScreenContent()
     }
 }
 
@@ -58,10 +107,21 @@ fun NotReUse(){
 @Composable
 fun ReUse(content : @Composable () -> Unit){
     StudyCompose_UITheme {
-        Surface(color = Color.LightGray){
+        Surface(color = Color.Green){
             content()
         }
     }
+}
+
+@Composable
+fun Counter(){
+
+    val count = remember { mutableStateOf(0)}
+
+    Button(onClick = {count.value++}){
+        Text("${count.value} 번 클릭했습니다.")
+    }
+
 }
 
 @Preview(showBackground = true)
@@ -79,10 +139,11 @@ fun NotReUsePreview() {
 }
 
 // 텍스트를 받아서 생성해주는 역할
+// modifier 를 사용하면 Surface 와 Text 와 같은 대부분의 UI 컴포넌트를 지정 가능하다.
 
 @Composable
 fun Greeting(name: String) {
-    Text(text = "Hello $name!")
+    Text(text = "Hello $name!",modifier = Modifier.padding(10.dp))
 }
 
 //Preview : 레이아웃 미리보기 지원
