@@ -1,10 +1,14 @@
 package com.kdn.studycompose_ui
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -67,11 +71,36 @@ class MainActivity : ComponentActivity() {
 
         // 화면의 다른위치에 컴포저블의 여러 객체들이 자체 버전을 가지고 있는것이다!
 
-                setContent {
-                ReUse {
-                    Counter()
-                }
-              }
+//                setContent {
+//                ReUse {
+//                    Counter()
+//                }
+//              }
+
+//      ---------------------------- 6. Source of truth -------------------------------
+
+        // Composable 함수에서 State 는 함수를 사용하거나 제어하기위한 유일한 방법이기때문에 외부에 노출되어야한다.
+        // -> State Hoisting
+        // 즉, 내부상태를 호출한 함수에 의해 제어 가능하게 만드는 방법이라는 것이다.
+
+        // 이런식으로 구조를 바꾸면 Counter 에서 관리되던 Count 값을 여기서 관리하고
+        // 람다식을 활용하여 호출한 함수의 값을 변경해준다.
+
+        // 이렇게되면 Counter 함수는 오직 버튼 클릭시 숫자를 증가시키고 텍스트를 출력시키는 역할만을 하게된다.
+
+        setContent {
+            ReUse {
+
+                val counterState = remember { mutableStateOf(0)}
+
+                SourceOfTruthCounter(
+                    count = counterState.value,
+                    updateCount = {newCount ->
+                        counterState.value = newCount
+                    }
+                )
+            }
+        }
     }
 }
 
@@ -83,6 +112,33 @@ fun MyScreenContent() {
         Greeting(name = "CEO 최윤성")
         Divider(color = Color.Black)
         Greeting("반갑습니다.")
+    }
+}
+
+@Composable
+fun NameList(names: List<String>, modifier: Modifier = Modifier) {
+    LazyColumn(modifier = modifier) {
+        items(items = names) { name ->
+            Greeting(name = name)
+            Divider(color = Color.Black)
+        }
+    }
+}
+
+// LazyColumn : 기존의 RecyclerView 와 동일한 기능을 하지만 뷰를 재활용하진 않는다.
+
+@Composable
+fun MyScreenContent(names: List<String> = List(100) { "안드로이드 #$it" }) {
+    val counterState = remember { mutableStateOf(0) }
+
+    Column(modifier = Modifier.fillMaxHeight()) {
+        NameList(names, Modifier.weight(1f))
+        SourceOfTruthCounter(
+            count = counterState.value,
+            updateCount = { newCount ->
+                counterState.value = newCount
+            }
+        )
     }
 }
 
@@ -110,6 +166,15 @@ fun ReUse(content : @Composable () -> Unit){
         Surface(color = Color.Green){
             content()
         }
+    }
+}
+
+@Composable
+fun SourceOfTruthCounter(count : Int, updateCount : (Int) -> Unit){
+    Button(onClick = {updateCount(count+1)},
+        // 버튼 배경색 바꾸기
+    colors = ButtonDefaults.buttonColors(backgroundColor = if(count / 2 == 0 ) Color.Cyan else Color.White)) {
+     Text(text = "$count 번 클릭하셨네요!")
     }
 }
 
