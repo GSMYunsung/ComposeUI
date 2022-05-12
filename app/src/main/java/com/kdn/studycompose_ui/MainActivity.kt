@@ -120,6 +120,7 @@ fun NameList(names: List<String>, modifier: Modifier = Modifier) {
     LazyColumn(modifier = modifier) {
         items(items = names) { name ->
             Greeting(name = name)
+
             Divider(color = Color.Black)
         }
     }
