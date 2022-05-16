@@ -3,10 +3,7 @@ package com.kdn.studycompose_ui
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
@@ -27,7 +24,7 @@ class ComposeActivity : ComponentActivity() {
 
     @Composable
     fun GreetingText(name: String) {
-        Text(text = "Hello $name!", modifier = Modifier.size(width = 80.dp, height = 80.dp))
+        Text(text = "Hello $name!", modifier = Modifier.height(240.dp).width(80.dp))
     }
 
 //    @Composable
