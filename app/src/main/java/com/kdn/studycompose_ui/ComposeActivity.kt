@@ -3,6 +3,7 @@ package com.kdn.studycompose_ui
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
@@ -22,9 +23,19 @@ class ComposeActivity : ComponentActivity() {
 
     }
 
+    // 순서에 따른 클릭 범위를 설정해줄 수 있다.
+
+    // padding 을 먼저 or clickable 을 먼저
+    // 크기를 먼저 지정할지, padding 을 먼저 지정해줄지.
+
     @Composable
     fun GreetingText(name: String) {
-        Text(text = "Hello $name!", modifier = Modifier.height(240.dp).width(80.dp))
+        Text(text = "Hello $name!",
+            modifier = Modifier
+                .height(240.dp)
+                .width(200.dp)
+                .padding(24.dp)
+                .clickable {  })
     }
 
 //    @Composable
