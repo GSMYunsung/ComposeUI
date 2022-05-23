@@ -6,6 +6,7 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
@@ -73,13 +74,77 @@ class Ui {
 
             Surface(
                 color = Color.Green,
-                modifier = Modifier.wrapContentSize()) {
+                modifier = Modifier.wrapContentSize(align = Alignment.Center)) {
                 Text(
                     text = "Wrapped content",
                     style = MaterialTheme.typography.h3)
             }
 
         }
+    }
+
+    @Composable
+    fun GreetingScreenSetRow(){
+        Surface(
+            color = Color.Gray,
+            modifier = Modifier.fillMaxSize()
+        ) {
+
+            Row() {
+                Surface(
+                    color = Color.Red,
+                    modifier = Modifier
+                        .height(600.dp)
+                        .width(60.dp)
+                ) { }
+
+                Surface(
+                    color = Color.Blue,
+                    modifier = Modifier
+                        .height(600.dp)
+                        .width(60.dp)
+                ) { }
+
+            }
+
+        }
+    }
+
+    @Composable
+    fun GreetingScreenSetSpace(){
+        Surface(
+            color = Color.Gray,
+            modifier = Modifier.fillMaxSize()
+        ) {
+
+            Row(
+                modifier = Modifier.fillMaxSize(),
+
+                // SpaceBetween = 각 아이템과의 거리만 남기고 양옆 layout의 여백을 아에 없애고 정렬
+                // SpaceAround = 각 아이템과의 여백과 양옆 layout 의 여백을 생각하여 정렬
+                // SpaceEvenly = 각 아이템과 양옆 layout 의 여백이 모두 동일하다.
+
+                horizontalArrangement = Arrangement.SpaceAround,
+                verticalAlignment = Alignment.CenterVertically) {
+
+                HorizontalColoredBar(Color.Red)
+                HorizontalColoredBar(Color.Green)
+                HorizontalColoredBar(Color.DarkGray)
+                HorizontalColoredBar(Color.LightGray)
+
+            }
+
+        }
+    }
+
+    @Composable
+    fun  HorizontalColoredBar(color : Color){
+        Surface(
+            color = color,
+            modifier = Modifier
+                .height(600.dp)
+                .width(60.dp)
+        ) { }
     }
 
 }

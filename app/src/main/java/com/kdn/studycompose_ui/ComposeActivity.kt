@@ -10,6 +10,7 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
@@ -32,18 +33,34 @@ class ComposeActivity : ComponentActivity() {
     fun MainScreen(){
         Surface(
             color = Color.Gray,
-            modifier = Modifier.fillMaxSize()) {
+            modifier = Modifier.fillMaxSize()
+        ) {
 
-            Surface(
-                color = Color.Green,
-                modifier = Modifier.wrapContentSize()) {
-                Text(
-                    text = "Wrapped content",
-                    style = MaterialTheme.typography.h3)
+            Row(
+                modifier = Modifier.fillMaxSize(),
+                horizontalArrangement = Arrangement.SpaceEvenly,
+                verticalAlignment = Alignment.CenterVertically) {
+
+                HorizontalColoredBar(Color.Red)
+                HorizontalColoredBar(Color.Green)
+                HorizontalColoredBar(Color.DarkGray)
+                HorizontalColoredBar(Color.LightGray)
+                
             }
             
         }
     }
+
+    @Composable
+    fun  HorizontalColoredBar(color : Color){
+        Surface(
+            color = color,
+            modifier = Modifier
+                .height(600.dp)
+                .width(60.dp)
+        ) { }
+    }
+
 
     @Composable
     fun GreetingText(name: String) {
