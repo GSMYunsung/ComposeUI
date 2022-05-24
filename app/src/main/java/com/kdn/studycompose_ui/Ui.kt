@@ -127,10 +127,10 @@ class Ui {
                 horizontalArrangement = Arrangement.SpaceAround,
                 verticalAlignment = Alignment.CenterVertically) {
 
-                HorizontalColoredBar(Color.Red)
-                HorizontalColoredBar(Color.Green)
-                HorizontalColoredBar(Color.DarkGray)
-                HorizontalColoredBar(Color.LightGray)
+                ColoredSquare(Color.Red)
+                ColoredSquare(Color.Green)
+                ColoredSquare(Color.DarkGray)
+                ColoredSquare(Color.LightGray)
 
             }
 
@@ -138,13 +138,45 @@ class Ui {
     }
 
     @Composable
-    fun  HorizontalColoredBar(color : Color){
+    fun ColoredSquare(color : Color){
         Surface(
             color = color,
             modifier = Modifier
                 .height(600.dp)
                 .width(60.dp)
         ) { }
+    }
+
+    @Composable
+    fun GreetingScreenSetColumnInRow(){
+
+        Surface(
+            color = Color.Gray,
+            modifier = Modifier.fillMaxSize()
+        ) {
+
+            Column(
+                modifier = Modifier.fillMaxSize(),
+                verticalArrangement = Arrangement.SpaceEvenly,
+                horizontalAlignment = Alignment.CenterHorizontally
+
+            ) {
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceEvenly
+                ) {
+
+                    ColoredSquare(Color.Red)
+                    ColoredSquare(Color.Green)
+
+                }
+                ColoredSquare(Color.DarkGray)
+                ColoredSquare(Color.LightGray)
+                ColoredSquare(Color.Cyan)
+
+            }
+
+        }
     }
 
 }
