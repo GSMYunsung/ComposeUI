@@ -10,6 +10,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.StudyCompose_UI">
         <activity
+            android:name=".DynamicContentExample"
+            android:exported="false"
+            android:label="@string/title_activity_dynamic_content_example"
+            android:theme="@style/Theme.StudyCompose_UI" />
+        <activity
             android:name=".ComposeActivity"
             android:exported="false"
             android:label="@string/title_activity_compose"
