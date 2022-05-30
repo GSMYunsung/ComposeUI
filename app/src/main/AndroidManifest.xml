@@ -10,17 +10,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.StudyCompose_UI">
         <activity
+            android:name=".ProfileCardLayout"
+            android:exported="false"
+            android:label="@string/title_activity_profile_card_layout"
+            android:theme="@style/Theme.StudyCompose_UI" />
+        <activity
             android:name=".DynamicContentExample"
             android:exported="true"
             android:label="@string/title_activity_dynamic_content_example"
-            android:theme="@style/Theme.StudyCompose_UI" >
-
+            android:theme="@style/Theme.StudyCompose_UI">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity
             android:name=".ComposeActivity"
@@ -31,8 +34,7 @@
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name"
-            android:theme="@style/Theme.StudyCompose_UI.NoActionBar">
-        </activity>
+            android:theme="@style/Theme.StudyCompose_UI.NoActionBar"></activity>
     </application>
 
 </manifest>
