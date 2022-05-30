@@ -5,6 +5,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -181,6 +182,8 @@ class Ui {
         }
     }
 
+    //-----------------------------------------------------------------------------------------------------------------------------
+
     @Composable
     fun DynamicContentExample(){
 
@@ -232,12 +235,47 @@ class Ui {
         }
     }
 
+    //-----------------------------------------------------------------------------------------------------------------------------
+
     @Composable
     fun Greeting2(name: String) {
         Text(
             text = "Hello $name!",
             style = MaterialTheme.typography.h4)
     }
+
+    @Composable
+    fun DynamicContentExample(viewModel: MainViewModel = MainViewModel()){
+
+        val newNameStateContent = viewModel.textFieldState.observeAsState("")
+
+        Column(
+            modifier = Modifier.fillMaxSize(),
+            verticalArrangement = Arrangement.SpaceEvenly,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            GreetingMessage(
+                newNameStateContent.value
+            ) { newName -> viewModel.onTextChange(newText = newName) }
+        }
+    }
+
+    @SuppressLint("UnrememberedMutableState")
+    @Composable
+    fun GreetingMessage(
+        textFieldValue : String,
+        textFieldUpdate : (newName : String) -> Unit
+    )
+    {
+
+        TextField(value = textFieldValue, onValueChange = textFieldUpdate)
+
+        // 다음 버튼으로 기존에 있는 배열에 마이클 String 추가
+        Button(onClick = {}) {
+            Text(text = textFieldValue)
+        }
+    }
+
 
 
 }
