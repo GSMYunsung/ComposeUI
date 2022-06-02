@@ -25,18 +25,17 @@ class ProfileCardLayout : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
-            ProfileMainScreen()
+            StudyCompose_UITheme() {
+                ProfileMainScreen()
+            }
         }
     }
 }
 
-
-
 @Composable
 fun ProfileMainScreen() {
         Surface(
-            modifier = Modifier.fillMaxSize(),
-            color = Color.LightGray,
+            modifier = Modifier.fillMaxSize()
             ) {
 
             ProfileCard()
@@ -90,7 +89,8 @@ fun ProfileCard(){
             .fillMaxWidth()
             .padding(16.dp)
             .wrapContentHeight(align = Alignment.Top),
-        elevation = 8.dp
+        elevation = 8.dp,
+        backgroundColor = Color.White
         ) {
 
         Row(
@@ -110,5 +110,7 @@ fun ProfileCard(){
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview3() {
-    ProfileMainScreen()
+        StudyCompose_UITheme() {
+            ProfileMainScreen()
+        }
 }
