@@ -9,6 +9,8 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Home
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
@@ -18,7 +20,9 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.kdn.studycompose_ui.ui.theme.Shapes
 import com.kdn.studycompose_ui.ui.theme.StudyCompose_UITheme
+import com.kdn.studycompose_ui.ui.theme.lightGreen
 
 class ProfileCardLayout : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,13 +38,34 @@ class ProfileCardLayout : ComponentActivity() {
 
 @Composable
 fun ProfileMainScreen() {
-        Surface(
-            modifier = Modifier.fillMaxSize()
+
+        // 기본 머티리얼 디자인 레이아웃 구조로 UI를 구현 할 수 있다.
+
+        Scaffold(topBar = { AppBar() }) {
+            Surface(
+                modifier = Modifier.fillMaxSize()
             ) {
 
-            ProfileCard()
+                ProfileCard()
 
-          }
+            }
+        }
+
+}
+
+@Composable
+fun AppBar(){
+    TopAppBar(
+        navigationIcon = {
+            Icon(
+            Icons.Default.Home,
+            "content description",
+             modifier = Modifier.padding(horizontal = 12.dp)
+
+            )},
+
+        title = { Text(text = "Messaging Application users")}
+    )
 }
 
 @Composable
@@ -66,7 +91,10 @@ fun ProfilePicture() {
 
     Card(
         shape = CircleShape,
-        border = BorderStroke(width = 2.dp,color = Color.Green),
+        border = BorderStroke(
+                width = 2.dp ,
+                color = MaterialTheme.colors.lightGreen),
+
         modifier = Modifier.padding(16.dp),
         elevation = 4.dp
         )
