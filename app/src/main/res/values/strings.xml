@@ -3,4 +3,5 @@
     <string name="title_activity_compose">ComposeActivity</string>
     <string name="title_activity_dynamic_content_example">DynamicContentExample</string>
     <string name="title_activity_profile_card_layout">ProfileCardLayout</string>
+    <string name="title_activity_main2">MainActivity2</string>
 </resources>
