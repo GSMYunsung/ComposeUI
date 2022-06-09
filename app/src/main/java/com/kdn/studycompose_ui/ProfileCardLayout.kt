@@ -37,7 +37,7 @@ class ProfileCardLayout : ComponentActivity() {
 }
 
 @Composable
-fun ProfileMainScreen() {
+fun ProfileMainScreen(userProfile : List<UserProfile> = userProfileList) {
 
         // 기본 머티리얼 디자인 레이아웃 구조로 UI를 구현 할 수 있다.
 
@@ -46,8 +46,12 @@ fun ProfileMainScreen() {
                 modifier = Modifier.fillMaxSize()
             ) {
 
-                ProfileCard()
-
+                Column() {
+                    Column() {
+                        for(userProfile in userProfile)
+                            ProfileCard(userProfile)
+                    }
+                }
             }
         }
 
@@ -69,17 +73,24 @@ fun AppBar(){
 }
 
 @Composable
-fun ProfileContent() {
+fun ProfileContent(userName : String, onlineStatus : Boolean) {
+
     Column(
         modifier = Modifier
             .padding(8.dp)
             .fillMaxWidth()
 
     ) {
-        Text(text = "John Doe", style = MaterialTheme.typography.h5)
+
+        CompositionLocalProvider(
+            values = arrayOf(LocalContentAlpha provides
+                    if (onlineStatus) 1f else ContentAlpha.medium)) {
+            Text(text = userName, style = MaterialTheme.typography.h5)
+        }
+
 
         CompositionLocalProvider(values = arrayOf(LocalContentAlpha provides ContentAlpha.medium)) {
-            Text(text = "Active now",style = MaterialTheme.typography.body2)
+            Text(text = if (onlineStatus) "Active now " else "Offline",style = MaterialTheme.typography.body2)
         }
         
 
@@ -87,20 +98,21 @@ fun ProfileContent() {
 }
 
 @Composable
-fun ProfilePicture() {
+fun ProfilePicture(drawableId : Int,onlineStatus : Boolean) {
 
     Card(
         shape = CircleShape,
         border = BorderStroke(
                 width = 2.dp ,
-                color = MaterialTheme.colors.lightGreen),
+                color = if(onlineStatus) MaterialTheme.colors.lightGreen
+                        else Color.Red),
 
         modifier = Modifier.padding(16.dp),
         elevation = 4.dp
         )
     {
         Image(
-            painter = painterResource(id = R.drawable.men),
+            painter = painterResource(id = drawableId),
             contentDescription = "Content description",
             modifier = Modifier.size(72.dp),
             contentScale = ContentScale.Crop
@@ -110,12 +122,12 @@ fun ProfilePicture() {
 }
 
 @Composable
-fun ProfileCard(){
+fun ProfileCard(userProfile: UserProfile){
     Card(
         modifier =
         Modifier
             .fillMaxWidth()
-            .padding(16.dp)
+            .padding(top = 8.dp, bottom = 4.dp, start = 16.dp, end = 16.dp)
             .wrapContentHeight(align = Alignment.Top),
         elevation = 8.dp,
         backgroundColor = Color.White
@@ -128,8 +140,8 @@ fun ProfileCard(){
             horizontalArrangement = Arrangement.Start
         )
         {
-            ProfilePicture()
-            ProfileContent()
+            ProfilePicture(userProfile.drawableId, userProfile.status)
+            ProfileContent(userProfile.name,userProfile.status)
         }
 
     }
