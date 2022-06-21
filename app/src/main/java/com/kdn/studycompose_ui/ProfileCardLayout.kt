@@ -7,6 +7,8 @@ import androidx.cardview.widget.CardView
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -37,7 +39,7 @@ class ProfileCardLayout : ComponentActivity() {
 }
 
 @Composable
-fun ProfileMainScreen(userProfile : List<UserProfile> = userProfileList) {
+fun ProfileMainScreen(userProfiles : List<UserProfile> = userProfileList) {
 
         // 기본 머티리얼 디자인 레이아웃 구조로 UI를 구현 할 수 있다.
 
@@ -45,12 +47,14 @@ fun ProfileMainScreen(userProfile : List<UserProfile> = userProfileList) {
             Surface(
                 modifier = Modifier.fillMaxSize()
             ) {
+                
+                LazyColumn{
 
-                Column() {
-                    Column() {
-                        for(userProfile in userProfile)
-                            ProfileCard(userProfile)
+                    items(userProfiles){ userProfile ->
+
+                        ProfileCard(userProfile = userProfile)
                     }
+
                 }
             }
         }
