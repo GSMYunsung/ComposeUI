@@ -1,4 +1,4 @@
-package com.kdn.studycompose_ui.ui.theme
+package com.kdn.studycompose_ui.app.ui.theme
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle

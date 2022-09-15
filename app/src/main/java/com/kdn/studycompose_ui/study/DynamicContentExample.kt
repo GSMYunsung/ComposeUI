@@ -1,4 +1,4 @@
-package com.kdn.studycompose_ui
+package com.kdn.studycompose_ui.study
 
 import android.annotation.SuppressLint
 import android.os.Bundle

@@ -1,11 +1,10 @@
-package com.kdn.studycompose_ui
+package com.kdn.studycompose_ui.study
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -17,7 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.kdn.studycompose_ui.ui.theme.StudyCompose_UITheme
+import com.kdn.studycompose_ui.app.ui.theme.StudyCompose_UITheme
 
 // Compose 에서는 재사용성을 강조!
 // 재사용이 가능하게 쪼개서 관리하여야 UI를 수정하고 사용하는데에 더 유리함!

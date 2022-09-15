@@ -1,12 +1,9 @@
-package com.kdn.studycompose_ui
+package com.kdn.studycompose_ui.study
 
-import android.content.Context
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.cardview.widget.CardView
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -16,22 +13,19 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.fontResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import coil.ImageLoader
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
-import com.kdn.studycompose_ui.ui.theme.Shapes
-import com.kdn.studycompose_ui.ui.theme.StudyCompose_UITheme
-import com.kdn.studycompose_ui.ui.theme.lightGreen
+import com.kdn.studycompose_ui.R
+import com.kdn.studycompose_ui.app.ui.theme.StudyCompose_UITheme
+import com.kdn.studycompose_ui.app.ui.theme.lightGreen
 
 class ProfileCardLayout : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

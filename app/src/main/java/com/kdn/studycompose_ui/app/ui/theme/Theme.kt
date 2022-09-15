@@ -1,11 +1,10 @@
-package com.kdn.studycompose_ui.ui.theme
+package com.kdn.studycompose_ui.app.ui.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.graphics.Color
 
 // 테마를 구성하는 클래스이다.
 

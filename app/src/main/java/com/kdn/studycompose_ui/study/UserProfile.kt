@@ -1,4 +1,4 @@
-package com.kdn.studycompose_ui
+package com.kdn.studycompose_ui.study
 
 data class UserProfile constructor(val name: String, val status: Boolean, val pictureUrl: String)
 
