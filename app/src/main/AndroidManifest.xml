@@ -7,42 +7,46 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
+        android:name=".app.di.App"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.StudyCompose_UI">
+
         <activity
-            android:name=".Roundup"
+            android:name=".study.Roundup"
             android:exported="false"
             android:label="@string/title_activity_roundps"
             android:theme="@style/Theme.StudyCompose_UI" />
         <activity
-            android:name=".ProfileCardLayout"
+            android:name=".study.ProfileCardLayout"
             android:exported="true"
             android:label="@string/title_activity_profile_card_layout"
-            android:theme="@style/Theme.StudyCompose_UI">
+            android:theme="@style/Theme.StudyCompose_UI" />
+        <activity
+            android:name=".study.DynamicContentExample"
+            android:exported="true"
+            android:label="@string/title_activity_dynamic_content_example"
+            android:theme="@style/Theme.StudyCompose_UI" />
+        <activity
+            android:name=".study.ComposeActivity"
+            android:exported="false"
+            android:label="@string/title_activity_compose"
+            android:theme="@style/Theme.StudyCompose_UI" />
+        <activity
+            android:name=".app.ui.meals.MainActivity"
+            android:allowBackup="true"
+            android:exported="true"
+            android:icon="@mipmap/ic_launcher"
+            android:roundIcon="@mipmap/ic_launcher_round"
+            android:supportsRtl="true"
+            android:theme="@style/Theme.StudyCompose_UI.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity
-            android:name=".DynamicContentExample"
-            android:exported="true"
-            android:label="@string/title_activity_dynamic_content_example"
-            android:theme="@style/Theme.StudyCompose_UI" />
-        <activity
-            android:name=".ComposeActivity"
-            android:exported="false"
-            android:label="@string/title_activity_compose"
-            android:theme="@style/Theme.StudyCompose_UI" />
-        <activity
-            android:name=".MainActivity"
-            android:exported="true"
-            android:label="@string/app_name"
-            android:theme="@style/Theme.StudyCompose_UI.NoActionBar" />
     </application>
 
 </manifest>
